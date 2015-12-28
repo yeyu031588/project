@@ -16,11 +16,18 @@ class UserController extends Controller
 	{
 		if($_POST){
 		    $validator = Validator::make($request->all(), [
-	            'usernames' => 'required|unique:user|max:12|min:6',
+	            'username' => 'required|unique:user|max:12|min:6',
 	        ]);
 			if($validator->fails()){
 				return view('home/register')->withErrors($validator);
 			}
+			//注册
+			$postArr['user'] = array(
+				'username' => $request->input('username'),
+				'password' => md5($request->input('password','123456'))
+			);
+			$user = new User;
+			$user->addUser($postArr);
 		}
         return view('home.register');
 	}
