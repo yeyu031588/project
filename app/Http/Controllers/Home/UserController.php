@@ -28,11 +28,12 @@ class UserController extends Controller
 				'username' => $request->input('username'),
 				'password' => md5($request->input('password','123456'))
 			);
-			$user = User::create($dataArr);
+			$user = User::create($postArr);
 			if($user){
-  				Notification::success('创建用户成功');
+  				// Notification::success('创建用户成功');
+  				   return view('home.register');
 			}
-			return redirect()->route('home.login');
+			// return redirect()->route('home.login');
 		}
         return view('home.register');
 	}
