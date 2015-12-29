@@ -15,7 +15,7 @@ class User extends Model
 	}
 
 	/*
-	*添加用户
+	*新增用户
 	*$param $dataArr 添加的数据
 	*
 	*/
