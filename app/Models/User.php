@@ -15,27 +15,23 @@ class User extends Model
 	}
 
 	/*
-	*添加用户
-	*$param $dataArr 添加的数据
-	*
+	*更改用户信息
+	*$param $data 保存数据
+	*$parame $userid 用户id
 	*/
-	public function addUser($dataArr)
+	public function updateUser($id,$data)
 	{
-		$reArr = array('status'=>0,'message'=>'系统出错');
-		$dataArr = is_array($dataArr)?$dataArr:array();
-		if(empty($dataArr['user']['username'])){
-			$reArr['message'] = '姓名不能为空';
-			return $reArr;
-		}
-		$user = User::create($dataArr['user'])->userProfile()->create($dataArr['profile']);
-		if($user){
-			$reArr['status'] = 1;
-		}
-		return $reArr;
+
 	}
 
-	public function getUser()
+	/*
+	*检验登录用户密码
+	*$param $username 用户名
+	*$password 用户密码
+	*/
+	public function checkUserExist($username,$password)
 	{
-		return User::find(1)->userProfile;
+
 	}
+
 }
