@@ -30,13 +30,14 @@ class UserController extends Controller
 			);
 			$user = User::create($postArr);
 			if($user){
-  				// Notification::success('创建用户成功');
-  				   return view('home.login');
+				$user->userProfile()->create(array());
+  				return view('home.login');
 			}
-			// return redirect()->route('home.login');
 		}
         return view('home.register');
 	}
+
+
 
 
 }
