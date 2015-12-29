@@ -11,8 +11,8 @@ use URL;
 use Redirect;
 class UserController extends Controller
 {
-   
-	
+
+
 	//注册
 	public function register(Request $request)
 	{

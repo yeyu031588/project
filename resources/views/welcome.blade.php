@@ -10,4 +10,5 @@
             </div>
         </div>
     </body>
+<?php var_dump(App::environment());?>
 </html>
