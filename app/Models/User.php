@@ -24,7 +24,7 @@ class User extends Model
 		$reArr = array('status'=>0,'message'=>'系统出错');
 		$dataArr = is_array($dataArr)?$dataArr:array();
 		if(empty($dataArr['user']['username'])){
-			$reArr['message'] = '姓名不能为空';
+			$reArr['message'] = '姓名不能为空!';
 			return $reArr;
 		}
 		$user = User::create($dataArr['user'])->userProfile()->create($dataArr['profile']);
