@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Home;
-use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests;
@@ -14,7 +13,7 @@ class UserController extends Controller
 {
    
 	
-
+	//注册
 	public function register(Request $request)
 	{
 		if($_POST){
