@@ -20,8 +20,8 @@ class SessionController extends Controller{
      */
     public function getSession(){
         $value = session::get('key','default');
-//        var_dump($value);
-//        die();
+        var_dump($value);
+        die();
     }
 
 
@@ -29,8 +29,8 @@ class SessionController extends Controller{
         if (!session::has('key')) {
             //
             $value = session::put('key', 'value');//这样是错误的,不知道是不是session没开启还是什么的
-            var_dump($value);
-            die();
+//            var_dump($value);
+//            die();
         }
     }
 
