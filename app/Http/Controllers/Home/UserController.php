@@ -7,6 +7,9 @@ use Illuminate\Http\Response;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Validator;
+use URL;
+use Redirect;
 class UserController extends Controller
 {
    
@@ -22,12 +25,15 @@ class UserController extends Controller
 				return view('home/register')->withErrors($validator);
 			}
 			//注册
-			$postArr['user'] = array(
+			$postArr = array(
 				'username' => $request->input('username'),
 				'password' => md5($request->input('password','123456'))
 			);
-			$user = new User;
-			$user->addUser($postArr);
+			$user = User::create($dataArr);
+			if($user){
+  				Notification::success('创建用户成功');
+			}
+			return redirect()->route('home.login');
 		}
         return view('home.register');
 	}
