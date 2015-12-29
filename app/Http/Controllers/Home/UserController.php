@@ -31,7 +31,7 @@ class UserController extends Controller
 			$user = User::create($postArr);
 			if($user){
   				// Notification::success('创建用户成功');
-  				   return view('home.register');
+  				   return view('home.login');
 			}
 			// return redirect()->route('home.login');
 		}
