@@ -20,8 +20,9 @@ Route::get('/cache/test','CacheController@test');
 Route::get('/cache/index','CacheController@index');
 Route::get('/cache/setCache','CacheController@setCache');
 Route::get('/cache/clearCache','CacheController@clearCache');
-
-
+Route::get('/session/getSession','SessionController@getSession');
+Route::get('/session/setSession','SessionController@setSession');
+Route::get('/session/clearSession','SessionController@clearSession');
 Route::get('admin/login','Admin\AdminController@login');
 Route::get('admin/index','Admin\AdminController@index');
 Route::get('admin/user/getUser','Admin\UserController@getUser');
@@ -41,8 +42,3 @@ Route::get('admin/user/getUser','Admin\UserController@getUser');
 //     //
 // });
 
-Route::group(['namespace' => 'Session'], function(){
-  Route::get('/session/getSession','SessionController@getSession');
-Route::get('/session/setSession','SessionController@setSession');
-Route::get('/session/clearSession','SessionController@clearSession');
-});
