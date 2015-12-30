@@ -16,6 +16,13 @@ Route::get('/', function () {
 });
 Route::get('home/user/register','Home\UserController@register');
 Route::post('home/user/register','Home\UserController@register');
+Route::get('/cache/test','CacheController@test');
+Route::get('/cache/index','CacheController@index');
+Route::get('/cache/setCache','CacheController@setCache');
+Route::get('/cache/clearCache','CacheController@clearCache');
+Route::get('/session/getSession','SessionController@getSession');
+Route::get('/session/setSession','SessionController@setSession');
+Route::get('/session/clearSession','SessionController@clearSession');
 
 Route::get('admin/login','Admin\AdminController@login');
 Route::get('admin/index','Admin\AdminController@index');
