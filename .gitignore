@@ -4,7 +4,4 @@ Homestead.json
 .env
 /.idea
 /vendor
-<<<<<<< HEAD
-=======
 /storage
->>>>>>> 618c27f5f5045891b72e367367737e677f200d92
