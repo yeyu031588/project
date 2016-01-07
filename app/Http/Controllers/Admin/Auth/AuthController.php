@@ -1,6 +1,6 @@
 <?php namespace
 App\Http\Controllers\Admin\Auth;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -34,6 +34,11 @@ class AuthController extends Controller {
     {
         $this->auth = $auth;
         $this->middleware('guest', ['except' => 'getLogout']);
+    }
+
+    public function postlogin(Request $request){
+        var_dump($request);
+        die();
     }
 
 

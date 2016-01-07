@@ -20,10 +20,15 @@ Route::post('home/user/login','Home\UserController@login');
 
 
 
-//Õâ±ß¶¨ÒåºóÌ¨µÄµÇÂ¼
-Route::get('admin/auth/login', 'Admin\Auth\AuthController@getLogin');
-Route::post('admin/auth/login', 'Admin\Auth\AuthController@postLogin');
-Route::get('admin/auth/logout', 'Admin\Auth\AuthController@getLogout');
+//ï¿½ï¿½ß¶ï¿½ï¿½ï¿½ï¿½Ì¨ï¿½Äµï¿½Â¼
+Route::get('/admin/auth/login', 'Admin\Auth\AuthController@getLogin');
+Route::post('/admin/auth/login', 'Admin\Auth\AuthController@postLogin');
+Route::get('/admin/auth/logout', 'Admin\Auth\AuthController@getLogout');
+
+Route::filter('auth.basic', function()
+{
+    return Auth::basic('name');
+});
 
 Route::group([ 'middleware' => 'auth'], function()
 {
