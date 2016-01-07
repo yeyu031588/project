@@ -1,5 +1,5 @@
 <?php namespace
-App\Http\Controllers\Auth;
+App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
@@ -21,7 +21,7 @@ class AuthController extends Controller {
 
     use AuthenticatesAndRegistersUsers;
 
-    public $redirectPath = '/admin';
+    public $redirectPath = '/admin/home/index';
 
     /**
      * Create a new authentication controller instance.
@@ -33,16 +33,8 @@ class AuthController extends Controller {
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;
-
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
-    public function getLogin(){
-        return view('auth.login');
-    }
-
-    public function postLogin(){
-        return view('admin.index');
-    }
 
 }
