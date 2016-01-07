@@ -13,9 +13,10 @@
 
 <div class="signin">
     <div class="signin-head"><img src="/images/avtar.png" alt="" class="img-circle"></div>
-    <form class="form-signin" role="form" action="/admin/user/login" method="post">
-        <input type="text" class="form-control" placeholder="用户名" required autofocus />
-        <input type="password" class="form-control" placeholder="密码" required />
+    <form class="form-signin" role="form" action="/auth/login" method="post">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <input type="text" class="form-control" name="username" placeholder="用户名" required autofocus />
+        <input type="password" class="form-control" name="password" placeholder="密码" required />
         <button class="btn btn-lg btn-warning btn-block" type="submit">登录</button>
         <label class="checkbox">
             <input type="checkbox" value="remember-me"> 记住我

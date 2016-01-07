@@ -22,6 +22,14 @@ Route::get('admin/login','Admin\AdminController@login');
 Route::get('admin/index','Admin\AdminController@index');
 Route::get('admin/user/getUser','Admin\UserController@getUser');
 
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function()
+{
+    Route::get('/', 'AdminController@index');
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes

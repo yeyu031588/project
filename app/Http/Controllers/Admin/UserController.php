@@ -20,4 +20,10 @@ class UserController extends Controller
 		echo '</pre>';
 	}
 
+    public function login(){
+        var_dump($_POST);
+        die();
+    }
+
+
 }
