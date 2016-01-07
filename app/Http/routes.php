@@ -18,15 +18,14 @@ Route::get('home/user/register','Home\UserController@register');
 Route::post('home/user/register','Home\UserController@register');
 Route::post('home/user/login','Home\UserController@login');
 
-Route::get('admin/login','Admin\AdminController@login');
-Route::get('admin/index','Admin\AdminController@index');
-Route::get('admin/user/getUser','Admin\UserController@getUser');
 
-Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function()
+//这边定义后台的登录
+Route::get('admin/auth/login', 'Admin\Auth\AuthController@getLogin');
+Route::post('admin/auth/login', 'Admin\Auth\AuthController@postLogin');
+Route::get('admin/auth/logout', 'Admin\Auth\AuthController@getLogout');
+
+Route::group([ 'middleware' => 'auth'], function()
 {
     Route::get('/', 'AdminController@index');
 });
