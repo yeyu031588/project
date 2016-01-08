@@ -21,6 +21,8 @@ class AuthController extends Controller {
 
     use AuthenticatesAndRegistersUsers;
 
+    protected $username = 'name';
+
     public $redirectPath = '/admin/home/index';
 
     /**
