@@ -10,20 +10,10 @@ use App\Models\Admin;
 
 class AdminController extends Controller
 {
-   
-    public function login(Request $request)
-    {
 
-        return view('admin.login');
-    }
-
-    public function index(Request $request)
-    {
-        if(!$request->user()){
-            echo 1;
-        }
-        return view('admin.index');
-    }
-
+   public function index(){
+       echo "后台首页";
+       die();
+   }
 
 }
