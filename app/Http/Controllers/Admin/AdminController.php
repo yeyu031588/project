@@ -12,8 +12,7 @@ class AdminController extends Controller
 {
 
    public function index(){
-       echo "后台首页";
-       die();
+       return view('admin.index');
    }
 
 }
