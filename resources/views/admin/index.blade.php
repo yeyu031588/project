@@ -1,7 +1,11 @@
 
 	@extends('layouts.admin')
     @section('title','主界面')
-    <div class="container-fluid">
+    
+    @section('link')
+        @parent
+    @stop
+
     @section('content')
         <div class="container-fluid">
 
@@ -285,5 +289,10 @@
             </div>
         </div>
     @stop
-    </div>
 
+    @section('jslink')
+        @parent
+    @stop
+    @section('jsfunction')
+        @parent
+    @stop

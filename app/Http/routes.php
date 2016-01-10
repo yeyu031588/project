@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('forum/',function(){
+	return view('forum.forum');
+});
 Route::get('home/user/register','Home\UserController@register');
 Route::post('home/user/register','Home\UserController@register');
 Route::post('home/user/login','Home\UserController@login');
