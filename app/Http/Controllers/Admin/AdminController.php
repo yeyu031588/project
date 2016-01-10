@@ -17,13 +17,5 @@ class AdminController extends Controller
         return view('admin.login');
     }
 
-    public function index(Request $request)
-    {
-        if(!$request->user()){
-            echo 1;
-        }
-        return view('admin.index');
-    }
-
 
 }
