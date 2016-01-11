@@ -19,20 +19,18 @@ Route::post('home/user/register','Home\UserController@register');
 Route::post('home/user/login','Home\UserController@login');
 
 
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);
 
-//��߶����̨�ĵ�¼
-Route::get('/admin/auth/login', 'Admin\Auth\AuthController@getLogin');
-Route::post('/admin/auth/login', 'Admin\Auth\AuthController@postLogin');
-Route::get('/admin/auth/logout', 'Admin\Auth\AuthController@getLogout');
 
-Route::filter('auth.basic', function()
+//后台
+Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => 'auth'], function()
 {
-    return Auth::basic('name');
-});
+    Route::get('/','AdminController@index');
 
-Route::group([ 'middleware' => 'auth'], function()
-{
-    Route::get('/', 'AdminController@index');
+
 });
 /*
 |--------------------------------------------------------------------------

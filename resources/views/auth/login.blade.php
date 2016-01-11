@@ -23,9 +23,9 @@
             </ul>
         </div>
     @endif
-    <form class="form-signin" role="form" action="{{ url('/admin/auth/login') }}" method="post">
+    <form class="form-signin" role="form" action="{{ url('/auth/login') }}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="text" class="form-control" name="username" placeholder="用户名" required autofocus />
+        <input type="text" class="form-control" name="name" placeholder="用户名" required autofocus />
         <input type="password" class="form-control" name="password" placeholder="密码" required />
         <button class="btn btn-lg btn-warning btn-block" type="submit">登录</button>
         <label class="checkbox">
