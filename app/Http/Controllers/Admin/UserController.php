@@ -11,19 +11,24 @@ use App\Models\User;
 class UserController extends Controller
 {
    
-	public function getUser(Request $request)
+	public function userlist(Request $request)
 	{
-		$user = new User;
-		$result = $user->getUser();
-		echo '<pre>';
-		print_r($result);
-		echo '</pre>';
+		return view('admin.user.user-list');
 	}
 
-    public function login(){
-        var_dump($_POST);
-        die();
-    }
+	public function createUser(Request $request)
+	{
+		return view('admin.user.new-user');
+	}
+
+	public function userProfile(Request $request)
+	{
+		return view('admin.user.user-profile');
+	}
+	public function login(Request $request)
+	{
+		return view('admin.signin');
+	}
 
 
 }

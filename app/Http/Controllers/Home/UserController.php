@@ -41,7 +41,7 @@ class UserController extends Controller
 	//登录
 	public function login()
 	{
-
+		return view('welcome');
 	}
 
 

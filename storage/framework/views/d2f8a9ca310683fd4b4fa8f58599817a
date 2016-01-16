@@ -1,13 +1,14 @@
-
-    @extends('layouts.admin')
-    @section('title','主界面')
     
-    @section('link')
+    <?php $__env->startSection('title','主界面'); ?>
+    
+    <?php $__env->startSection('link'); ?>
         @parent
         <link rel="stylesheet" href="/css/compiled/user-list.css" type="text/css" media="screen" />
-    @stop
+    <?php $__env->stopSection(); ?>
 
-    @section('content')
+    <?php $__env->startSection('content'); ?>
+         
+
         <div class="container-fluid">
             <div id="pad-wrapper" class="users-list">
                 <div class="row-fluid header">
@@ -252,11 +253,13 @@
             </div>
         </div>
     </div>
-    @stop
+    <?php $__env->stopSection(); ?>
 
-    @section('jslink')
+    <?php $__env->startSection('jslink'); ?>
         @parent
-    @stop
-    @section('jsfunction')
+    <?php $__env->stopSection(); ?>
+    <?php $__env->startSection('jsfunction'); ?>
         @parent
-    @stop
+    <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

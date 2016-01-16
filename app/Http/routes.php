@@ -19,16 +19,23 @@ Route::get('forum/',function(){
 });
 Route::get('home/user/register','Home\UserController@register');
 Route::post('home/user/register','Home\UserController@register');
-Route::post('home/user/login','Home\UserController@login');
+Route::get('home/user/login','Home\UserController@login');
 
 
-
-Route::get('admin',function(){
-	return view('admin.index');
+Route::group(['namespace' => 'Admin','middleware' => ['adminAuth']], function()
+{
+	Route::get('admin',function(){
+		return view('admin.index');
+	});
+	Route::get('/admin/auth/login', 'Auth\AuthController@getLogin');
+	Route::post('/admin/auth/login', 'Auth\AuthController@postLogin');
+	Route::get('/admin/auth/logout', 'Auth\AuthController@getLogout');
+	Route::get('/admin/user/userlist', 'UserController@userlist');
+	Route::get('/admin/user/create', 'UserController@createUser');
+	Route::get('/admin/user/profile', 'UserController@userProfile');
 });
-Route::get('/admin/auth/login', 'Admin\Auth\AuthController@getLogin');
-Route::post('/admin/auth/login', 'Admin\Auth\AuthController@postLogin');
-Route::get('/admin/auth/logout', 'Admin\Auth\AuthController@getLogout');
+Route::get('admin/login','Admin\AdminController@login');
+
 
 Route::filter('auth.basic', function()
 {
@@ -49,7 +56,3 @@ Route::group([ 'middleware' => 'auth'], function()
 | kernel and includes session state, CSRF protection, and more.
 |
 */
-
-Route::group(['middleware' => ['web']], function () {
-    //
-});
