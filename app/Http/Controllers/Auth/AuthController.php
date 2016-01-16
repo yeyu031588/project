@@ -1,9 +1,13 @@
 <?php namespace
-App\Http\Controllers\Admin\Auth;
+App\Http\Controllers\Auth;
+
+use App\User;
+use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller {
@@ -19,9 +23,10 @@ class AuthController extends Controller {
     |
     */
 
-    use AuthenticatesAndRegistersUsers;
+    use AuthenticatesAndRegistersUsers,ThrottlesLogins;
 
-    public $redirectPath = '/admin/home/index';
+    protected $redirectPath = '/admin';
+    protected $username = 'name';
 
     /**
      * Create a new authentication controller instance.
@@ -36,9 +41,22 @@ class AuthController extends Controller {
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
-    public function postlogin(Request $request){
-        var_dump($request);
-        die();
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|min:6',
+        ]);
+    }
+
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
     }
 
 

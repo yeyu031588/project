@@ -10,12 +10,18 @@ use App\Models\Admin;
 
 class AdminController extends Controller
 {
+<<<<<<< HEAD
    
     public function login(Request $request)
     {
 
         return view('admin.signin');
     }
+=======
+>>>>>>> 446bde631f7b59f981fac52ab917db0de0953310
 
+   public function index(){
+       return view('admin.index');
+   }
 
 }

@@ -14,14 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('forum/',function(){
-	return view('forum.forum');
-});
 Route::get('home/user/register','Home\UserController@register');
 Route::post('home/user/register','Home\UserController@register');
 Route::get('home/user/login','Home\UserController@login');
 
 
+<<<<<<< HEAD
 Route::group(['namespace' => 'Admin','middleware' => ['adminAuth']], function()
 {
 	Route::get('admin',function(){
@@ -35,16 +33,20 @@ Route::group(['namespace' => 'Admin','middleware' => ['adminAuth']], function()
 	Route::get('/admin/user/profile', 'UserController@userProfile');
 });
 Route::get('admin/login','Admin\AdminController@login');
+=======
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);
+>>>>>>> 446bde631f7b59f981fac52ab917db0de0953310
 
 
-Route::filter('auth.basic', function()
+//后台
+Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => 'auth'], function()
 {
-    return Auth::basic('name');
-});
+    Route::get('/','AdminController@index');
 
-Route::group([ 'middleware' => 'auth'], function()
-{
-    Route::get('/', 'AdminController@index');
+
 });
 /*
 |--------------------------------------------------------------------------

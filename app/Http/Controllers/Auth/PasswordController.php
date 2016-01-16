@@ -30,8 +30,6 @@ class PasswordController extends Controller
     public function __construct(Guard $auth, PasswordBroker $passwords)
     {
         $this->auth = $auth;
-        $this->passwords = $passwords;
-        $this->redirectTo = url(route('backend.home.index'));
         $this->middleware('guest');
     }
 }
