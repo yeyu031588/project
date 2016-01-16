@@ -14,15 +14,15 @@
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
+//前台
+Route::get('register', 'Home\UserController@register');
 
+//后台
 Route::group(['namespace' => 'Admin','middleware' => ['adminAuth']], function()
 {
 	Route::get('admin',function(){
 		return view('admin.index');
 	});
-	Route::get('/admin/auth/login', 'Auth\AuthController@getLogin');
-	Route::post('/admin/auth/login', 'Auth\AuthController@postLogin');
-	Route::get('/admin/auth/logout', 'Auth\AuthController@getLogout');
 	Route::get('/admin/user/userlist', 'UserController@userlist');
 	Route::get('/admin/user/create', 'UserController@createUser');
 	Route::get('/admin/user/profile', 'UserController@userProfile');

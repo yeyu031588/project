@@ -14,12 +14,21 @@ class AdminController extends Controller
    
     public function login(Request $request)
     {
-
+    	if($request->session()->get('admin_uid'))
+    	{
+    		return redirect()->guest('/admin');
+    	}
         return view('admin.signin');
     }
 
    public function index(){
        return view('admin.index');
+   }
+
+   public function signin()
+   {
+   		$username = $request->input('username');
+   		$passwd = $request->input('passwd');
    }
 
 }
