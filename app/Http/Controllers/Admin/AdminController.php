@@ -18,17 +18,13 @@ class AdminController extends Controller
     	{
     		return redirect()->guest('/admin');
     	}
-        return view('admin.signin');
+      return view('admin.signin');
     }
-
-   public function index(){
-       return view('admin.index');
-   }
-
+    
    public function signin()
    {
-   		$username = $request->input('username');
-   		$passwd = $request->input('passwd');
+   		// $username = $request->input('username');
+   		// $passwd = $request->input('passwd');
    }
 
 }

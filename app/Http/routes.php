@@ -28,3 +28,4 @@ Route::group(['namespace' => 'Admin','middleware' => ['adminAuth']], function()
 	Route::get('/admin/user/profile', 'UserController@userProfile');
 });
 Route::get('admin/login','Admin\AdminController@login');
+Route::any('admin/signin','Admin\AdminController@signin');

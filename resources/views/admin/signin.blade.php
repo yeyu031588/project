@@ -60,11 +60,13 @@
 
 
     <div class="row-fluid login-wrapper">
+        <form action='/admin/signin' method='POST'>
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <a href="index.html">
             <img class="logo" src="/images/logo-white.png" />
         </a>
 
-        <div class="span4 box">
+            <div class="span4 box">
             <div class="content-wrap">
                 <h6>后台登录</h6>
                 <input class="span12" type="text" placeholder="E-mail address" />
@@ -73,9 +75,10 @@
                     <input id="remember-me" type="checkbox" />
                     <label for="remember-me">Remember me</label>
                 </div>
-                <a class="btn-glow primary login" href="index.html">登录</a>
+                <button class="btn-glow primary login">登录</button>
             </div>
         </div>
+        </form>
     </div>
 
 	<!-- scripts -->
