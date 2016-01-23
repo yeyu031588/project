@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-	protected $table = 'user';
+	protected $table = 'users';
 	protected $guarded = ['id'];
 
 	public function userProfile()

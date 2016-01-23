@@ -6,25 +6,54 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
+use Auth;
+use App\Models\User;
+use Redirect;
 
 class AdminController extends Controller
 {
 
-   
-    public function login(Request $request)
+   public function index()
+   {
+    return view('admin.index');
+   }
+
+    //登录
+  public function login(Request $request)
     {
-    	if($request->session()->get('admin_uid'))
-    	{
-    		return redirect()->guest('/admin');
-    	}
+
+      if(Auth::check())
+      {
+        $info = Auth::user();
+        if($info['isadmin'] ==1)
+        {
+          return Redirect::to('admin');
+        }
+        
+      }
       return view('admin.signin');
     }
     
-   public function signin()
+   //登录
+   public function signin(Request $request)
    {
-   		// $username = $request->input('username');
-   		// $passwd = $request->input('passwd');
+      $username = $request->input('username');
+      $password = $request->input('passwd');
+      if(Auth::attempt(['username' => $username, 'password' => $password])){
+          return Redirect::to('admin')
+              ->with('message', '成功登录');
+      }else{
+         return Redirect::to('admin/login')
+              ->with('message', '用户名密码不正确')
+              ->withInput();
+      }
+
+   }
+
+   //退出
+   public function logout()
+   {
+
    }
 
 }

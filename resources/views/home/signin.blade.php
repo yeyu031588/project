@@ -30,45 +30,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
 
-
-    <!-- background switcher -->
-    <div class="bg-switch visible-desktop">
-        <div class="bgs">
-            <a href="#" data-img="landscape.jpg" class="bg active">
-                <img src="/images/bgs/landscape.jpg" />
-            </a>
-            <a href="#" data-img="blueish.jpg" class="bg">
-                <img src="/images/bgs/blueish.jpg" />
-            </a>            
-            <a href="#" data-img="7.jpg" class="bg">
-                <img src="/images/bgs/7.jpg" />
-            </a>
-            <a href="#" data-img="8.jpg" class="bg">
-                <img src="/images/bgs/8.jpg" />
-            </a>
-            <a href="#" data-img="9.jpg" class="bg">
-                <img src="/images/bgs/9.jpg" />
-            </a>
-            <a href="#" data-img="10.jpg" class="bg">
-                <img src="/images/bgs/10.jpg" />
-            </a>
-            <a href="#" data-img="11.jpg" class="bg">
-                <img src="/images/bgs/11.jpg" />
-            </a>
-        </div>
-    </div>
-
-
     <div class="row-fluid login-wrapper">
-        <form action='/admin/signin' method='POST'>
+        <form action='/home/signin' method='POST'>
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <a href="index.html">
-            <img class="logo" src="/images/logo-white.png" />
+         <!--    <img class="logo" src="/images/logo-white.png" /> -->
         </a>
 
             <div class="span4 box">
             <div class="content-wrap">
-                <h6>后台登录</h6>
+                <h6>用户登录</h6>
                 @if(Session::has('message'))
                 <p class="alert">{{ Session::get('message') }}</p>
                 @endif

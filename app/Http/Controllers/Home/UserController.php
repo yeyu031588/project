@@ -10,6 +10,7 @@ use Validator;
 use URL;
 use Redirect;
 use Session;
+use Auth;
 class UserController extends Controller
 {
    
@@ -19,15 +20,14 @@ class UserController extends Controller
 	{
 		if($_POST){
 		    $validator = Validator::make($request->all(), [
-	            'username' => 'required|unique:user|max:12|min:6',
+	            'username' => 'required|unique:users|max:12|min:6',
 	        ]);
 			if($validator->fails()){
-				return view('home/register')->withErrors($validator);
+				return view('home.signup')->withErrors($validator);
 			}
-			//注册
 			$postArr = array(
 				'username' => $request->input('username'),
-				'password' => md5($request->input('password','123456'))
+				'password' =>  bcrypt($request->input('password')),
 			);
 			$user = User::create($postArr);
 			if($user){
@@ -35,13 +35,33 @@ class UserController extends Controller
   				return view('home.login');
 			}
 		}
-        return view('home.register');
+        // return view('home.register');
+        return view('home.signup');
 	}
 
 	//登录
 	public function login()
 	{
-		return view('welcome');
+	if(Auth::check())
+      {
+          return Redirect::to('/');
+        
+      }
+		return view('home.signin');
+	}
+
+	public function signin(Request $request)
+	{
+      $username = $request->input('username');
+      $password = $request->input('passwd');
+      if(Auth::attempt(['username' => $username, 'password' => $password])){
+          return Redirect::to('/')
+              ->with('message', '成功登录');
+      }else{
+         return Redirect::to('login')
+              ->with('message', '用户名密码不正确')
+              ->withInput();
+      }
 	}
 
 

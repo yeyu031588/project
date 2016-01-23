@@ -11,21 +11,19 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-
-Route::get('home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 //前台
-Route::get('register', 'Home\UserController@register');
+Route::any('register', 'Home\UserController@register');
+Route::any('login', 'Home\UserController@login');
+Route::post('home/signin', 'Home\UserController@signin');
 
 //后台
+Route::get('admin/login','Admin\AdminController@login');
+Route::any('admin/signin','Admin\AdminController@signin');
 Route::group(['namespace' => 'Admin','middleware' => ['adminAuth']], function()
 {
-	Route::get('admin',function(){
-		return view('admin.index');
-	});
+	Route::get('admin','AdminController@index');
 	Route::get('/admin/user/userlist', 'UserController@userlist');
 	Route::get('/admin/user/create', 'UserController@createUser');
 	Route::get('/admin/user/profile', 'UserController@userProfile');
 });
-Route::get('admin/login','Admin\AdminController@login');
-Route::any('admin/signin','Admin\AdminController@signin');

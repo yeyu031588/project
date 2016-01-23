@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Auth;
+use Redirect;
 
 class AdminAuth
 {
@@ -34,9 +36,15 @@ class AdminAuth
      */
     public function handle($request, Closure $next)
     {
-        $admin_uid = $request->session()->get('admin_uid');
-        if(!$admin_uid){
+        if(!Auth::check()){
             return redirect()->guest('admin/login');
+        }
+        $info = Auth::user();
+        if($info['isadmin'] !=1 )
+        {
+            return Redirect::to('admin/login')
+            ->with('message', '您没有权限')
+            ->withInput();
         }
         return $next($request);
     }

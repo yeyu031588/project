@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
 use App\Models\User;
+use Redirect;
 
 class UserController extends Controller
 {
@@ -24,10 +26,6 @@ class UserController extends Controller
 	public function userProfile(Request $request)
 	{
 		return view('admin.user.user-profile');
-	}
-	public function login(Request $request)
-	{
-		return view('admin.signin');
 	}
 
 
